@@ -1,2 +1,11 @@
-# 2020_Robot
- 2020 Robot for the FRC team known as Phalanx, with Team Number 5563.
+# We are cool
+
+
+# Here are a bunch of other cool people/companies that supported us!
+
+/////////////
+
+Special Thanks to:
+Sticker Mule ($108)
+
+/////////////
