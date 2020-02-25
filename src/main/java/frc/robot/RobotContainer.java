@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.ConveyorCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.TankDriveCommand;
@@ -26,12 +27,14 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private final ExampleSubsystem m_exampleSubsystem     = new ExampleSubsystem();
   private static final DrivetrainSubsystem m_drivetrain = new DrivetrainSubsystem();
-  private static final ShooterSubsystem m_shooter = new ShooterSubsystem();
+  private static final ShooterSubsystem m_shooter       = new ShooterSubsystem();
+  private static final ConveyorSubsystem m_conveyor     = new ConveyorSubsystem();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  private final ShooterCommand m_ShooterCommand = new ShooterCommand(m_shooter);
+  private final ExampleCommand m_autoCommand      = new ExampleCommand(m_exampleSubsystem);
+  private final ShooterCommand m_ShooterCommand   = new ShooterCommand(m_shooter);
+  private final ConveyorCommand m_ConveyorCommand = new ConveyorCommand(m_conveyor);
 
   //Define Joysticks
   Joystick controller = new Joystick(Constants.CONTROLLER_USB_ID);
@@ -48,6 +51,8 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     m_drivetrain.setDefaultCommand(new TankDriveCommand(m_drivetrain, controller));
+    m_shooter.setDefaultCommand(new ShooterCommand(m_shooter));
+    m_conveyor.setDefaultCommand(new ConveyorCommand(m_conveyor));
   }
 
   /**
@@ -57,8 +62,11 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton leftTrigger = new JoystickButton(controller,Constants.LEFT_BUMPER);
-    leftTrigger.whenHeld(m_ShooterCommand);
+    JoystickButton leftBumper = new JoystickButton(controller, Constants.LEFT_BUMPER);
+    leftBumper.whenHeld(m_ShooterCommand);
+
+    JoystickButton aButton = new JoystickButton(controller, Constants.A_BUTTON);
+    aButton.whenHeld(m_ConveyorCommand);
   }
 
 
@@ -71,4 +79,6 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }
+
+
 }

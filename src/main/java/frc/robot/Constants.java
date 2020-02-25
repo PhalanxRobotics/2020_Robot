@@ -18,13 +18,16 @@ package frc.robot;
 public final class Constants {
 
     // CAN IDs
-    public final static int FL_DRIVE_CAN_ID = 1;
-    public final static int RL_DRIVE_CAN_ID = 2;
-    public final static int FR_DRIVE_CAN_ID = 0;
-    public final static int RR_DRIVE_CAN_ID = 3;
-    public final static int SHOOTER_CAN_ID = 000;
-    public final static int CONVEYOR_CAN_ID = 00;
-    public final static int LEFT_BUMPER = 4; // index 
+    public final static int FR_DRIVE_CAN_ID = 0; //Dave
+    public final static int FL_DRIVE_CAN_ID = 1; //Johnny
+    public final static int RL_DRIVE_CAN_ID = 2; //Zaineb
+    public final static int RR_DRIVE_CAN_ID = 3; //Dominic
+    public final static int CONVEYOR_CAN_ID = 4; //Dylan
+    public final static int SHOOTER_CAN_ID  = 5; //Isaac
+    
+    // Controller Index Numbers
+    final static int LEFT_BUMPER = 4;
+    final static int A_BUTTON    = 1;
 
     //Joystick port IDS
     public static final int CONTROLLER_USB_ID = 0;

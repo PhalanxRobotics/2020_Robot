@@ -13,22 +13,22 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class ShooterSubsystem extends SubsystemBase {
-  SpeedController shooterMotor;
+public class ConveyorSubsystem extends SubsystemBase {
+  SpeedController conveyorMotor;
   /**
-   * Creates a new ShooterSubsystem.
+   * Creates a new ConveyorSubsystem.
    */
-  public ShooterSubsystem() {
-    shooterMotor = new WPI_VictorSPX(Constants.SHOOTER_CAN_ID);
+  public ConveyorSubsystem() {
+    conveyorMotor = new WPI_VictorSPX(Constants.CONVEYOR_CAN_ID);
 
   }
 
-  public void shoot() {
-    shooterMotor.set(0.50);
+  public void pull(){
+    conveyorMotor.set(0.50);
   }
 
-  public void ceaseFire() {
-    shooterMotor.set(0.0);
+  public void endPull(){
+    conveyorMotor.set(0.0);
   }
 
   @Override
