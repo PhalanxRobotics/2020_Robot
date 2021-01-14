@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -21,6 +23,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+  private UsbCamera m_lowCamera;
+  private UsbCamera m_highCamera;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -31,6 +35,23 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    // Gets the instance of the cameras from the RoboRIO Usb Ports
+    m_lowCamera = CameraServer.getInstance().startAutomaticCapture(0);
+    m_highCamera = CameraServer.getInstance().startAutomaticCapture(1);
+
+    // Sets the Resolution and FPS of the Cameras
+    m_lowCamera.setFPS(30);
+    m_lowCamera.setResolution(320, 240);
+    m_highCamera.setFPS(30);
+    m_highCamera.setResolution(320, 240); 
+    // Higher framerate and lower resolution for better latency
+    m_lowCamera.setExposureAuto();
+    m_lowCamera.setWhiteBalanceAuto();
+    m_highCamera.setExposureAuto();
+    m_highCamera.setWhiteBalanceAuto(); 
+    // Alex put these in because he wanted to
+
   }
 
   /**

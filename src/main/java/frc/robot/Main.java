@@ -29,5 +29,4 @@ public final class Main {
 }
 
 
-/// Haru is a cinnamon roll 
 /// #ClownDown

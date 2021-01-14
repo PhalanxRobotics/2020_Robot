@@ -11,9 +11,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.ConveyorCommand;
+import frc.robot.commands.StartConveyorCommand;
+import frc.robot.commands.StopConveyorCommand;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.StartShooterCommand;
+import frc.robot.commands.StopShooterCommand;
 import frc.robot.commands.TankDriveCommand;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -32,15 +34,18 @@ public class RobotContainer {
   private static final ShooterSubsystem m_shooter       = new ShooterSubsystem();
   private static final ConveyorSubsystem m_conveyor     = new ConveyorSubsystem();
 
-  private final ExampleCommand m_autoCommand      = new ExampleCommand(m_exampleSubsystem);
-  private final ShooterCommand m_ShooterCommand   = new ShooterCommand(m_shooter);
-  private final ConveyorCommand m_ConveyorCommand = new ConveyorCommand(m_conveyor);
+  private final ExampleCommand m_autoCommand            = new ExampleCommand(m_exampleSubsystem);
 
   //Define Joysticks
   Joystick controller = new Joystick(Constants.CONTROLLER_USB_ID);
 
   //Define Triggers
 
+  //Define Buttons
+  JoystickButton xButton     = new JoystickButton(controller, Constants.X_BUTTON);
+  JoystickButton yButton     = new JoystickButton(controller, Constants.Y_BUTTON);
+  JoystickButton aButton     = new JoystickButton(controller, Constants.A_BUTTON);
+  JoystickButton bButton     = new JoystickButton(controller, Constants.B_BUTTON);
 
 
 
@@ -51,8 +56,6 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     m_drivetrain.setDefaultCommand(new TankDriveCommand(m_drivetrain, controller));
-    m_shooter.setDefaultCommand(new ShooterCommand(m_shooter));
-    m_conveyor.setDefaultCommand(new ConveyorCommand(m_conveyor));
   }
 
   /**
@@ -62,11 +65,10 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton leftBumper = new JoystickButton(controller, Constants.LEFT_BUMPER);
-    leftBumper.whenHeld(m_ShooterCommand);
-
-    JoystickButton aButton = new JoystickButton(controller, Constants.A_BUTTON);
-    aButton.whenHeld(m_ConveyorCommand);
+    xButton.whenPressed(new StartShooterCommand(m_shooter));
+    yButton.whenPressed(new StopShooterCommand(m_shooter));
+    aButton.whenPressed(new StartConveyorCommand(m_conveyor));
+    bButton.whenPressed(new StopConveyorCommand(m_conveyor));
   }
 
 

@@ -7,23 +7,18 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
-public class TankDriveCommand extends CommandBase {
-  DrivetrainSubsystem m_drivetrain;
-  Joystick m_controller;
-
+public class StopShooterCommand extends CommandBase {
+  ShooterSubsystem m_shooter;
   /**
-   * Creates a new TankDriveCommand.
+   * Creates a new StopShooterCommand.
    */
-  public TankDriveCommand(DrivetrainSubsystem drivetrain, Joystick controller) {
-    m_drivetrain = drivetrain;
-    m_controller  = controller;
+  public StopShooterCommand(ShooterSubsystem shooter) {
+    m_shooter = shooter;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_drivetrain);
+    addRequirements(m_shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -34,14 +29,12 @@ public class TankDriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drivetrain.move(m_controller.getY(Hand.kLeft), m_controller.getX(Hand.kLeft));
+    m_shooter.stopShooting();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    // STOP MOTORS!!!
-    m_drivetrain.move(0.0, 0.0);
   }
 
   // Returns true when the command should end.

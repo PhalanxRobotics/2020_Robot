@@ -24,10 +24,27 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void shoot() {
-    shooterMotor.set(0.50);
+    // Starts Motor
+    shooterMotor.set(1.0);
+  }
+    
+  public void stopShooting() {
+    // Stops Motor
+    shooterMotor.set(0.0);
   }
 
-  public void ceaseFire() {
+  public void haloTheme() {
+    // Plays the Halo Theme 
+    // For the memes
+    // Alex is a god for this
+    shooterMotor.set(0.4655367);
+    shooterMotor.set(0.5225988);
+    shooterMotor.set(0.5536723);
+    shooterMotor.set(0.5225988);
+    shooterMotor.set(0.6214689);
+    shooterMotor.set(0.5536723);
+    shooterMotor.set(0.4284369);
+    shooterMotor.set(0.4655367);
     shooterMotor.set(0.0);
   }
 

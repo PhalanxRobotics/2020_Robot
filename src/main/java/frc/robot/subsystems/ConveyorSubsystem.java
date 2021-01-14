@@ -22,14 +22,16 @@ public class ConveyorSubsystem extends SubsystemBase {
     conveyorMotor = new WPI_VictorSPX(Constants.CONVEYOR_CAN_ID);
 
   }
-
   public void pull(){
-    conveyorMotor.set(0.50);
+    // Starts Motor
+    conveyorMotor.set(1.0);
   }
 
-  public void endPull(){
+  public void stopPull(){
+    // Stops Motor
     conveyorMotor.set(0.0);
   }
+
 
   @Override
   public void periodic() {

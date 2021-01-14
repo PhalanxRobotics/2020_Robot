@@ -19,7 +19,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   SpeedController frontRight;
   SpeedController rearLeft;
   SpeedController rearRight;
-  DifferentialDrive drive;
+  DifferentialDrive move;
   SpeedControllerGroup leftSide;
   SpeedControllerGroup rightSide;
 
@@ -31,14 +31,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
     rearLeft   = new WPI_VictorSPX(Constants.RL_DRIVE_CAN_ID);
     frontRight = new WPI_VictorSPX(Constants.FR_DRIVE_CAN_ID);
     rearRight  = new WPI_VictorSPX(Constants.RR_DRIVE_CAN_ID);
-    leftSide   = new SpeedControllerGroup(frontLeft, rearLeft);
-    rightSide  = new SpeedControllerGroup(frontRight, rearRight);
-    drive      = new DifferentialDrive(leftSide, rightSide);
+    leftSide   = new SpeedControllerGroup(frontRight, rearRight); // Actually Right was inverted at the start
+    rightSide  = new SpeedControllerGroup(frontLeft, rearLeft); // Actually Left was inverted at the start
+    move      = new DifferentialDrive(leftSide, rightSide);
 
   }
 
-  public void drive(double leftSpeed, double rightSpeed) {
-    drive.tankDrive(leftSpeed, rightSpeed);
+  public void move(double leftSpeed, double rightSpeed) {
+    move.tankDrive(leftSpeed, rightSpeed);
   }
 
   @Override

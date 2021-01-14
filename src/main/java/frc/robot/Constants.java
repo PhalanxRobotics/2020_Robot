@@ -15,6 +15,7 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
+
 public final class Constants {
 
     // CAN IDs
@@ -26,8 +27,10 @@ public final class Constants {
     public final static int SHOOTER_CAN_ID  = 5; //Isaac
     
     // Controller Index Numbers
-    final static int LEFT_BUMPER = 4;
-    final static int A_BUTTON    = 1;
+    final static int A_BUTTON     = 1;
+    final static int B_BUTTON     = 2;
+    final static int X_BUTTON     = 3;
+    final static int Y_BUTTON     = 4; 
 
     //Joystick port IDS
     public static final int CONTROLLER_USB_ID = 0;

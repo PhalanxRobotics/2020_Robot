@@ -10,12 +10,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ConveyorSubsystem;
 
-public class ConveyorCommand extends CommandBase {
+public class StopConveyorCommand extends CommandBase {
   ConveyorSubsystem m_conveyor;
   /**
-   * Creates a new ConveyorCommand.
+   * Creates a new StopConveyorCommand.
    */
-  public ConveyorCommand(ConveyorSubsystem conveyor) {
+  public StopConveyorCommand(ConveyorSubsystem conveyor) {
     m_conveyor = conveyor;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_conveyor);
@@ -29,13 +29,12 @@ public class ConveyorCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_conveyor.pull();
+    m_conveyor.stopPull();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_conveyor.endPull();
   }
 
   // Returns true when the command should end.
